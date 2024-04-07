@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const connectDB = require('./Config/db');
 
 require('dotenv').config();
-const { APP_PORT, HOSTNAME } = process.env;
+const { PORT } = process.env;
 
 const app = express();
 
@@ -28,7 +28,7 @@ readdirSync('./Routes').map(rout => (
     app.use('/api', require('./Routes/' + rout))
 ));
 
-app.listen(APP_PORT || 8000, () => {
+app.listen(PORT || 8000, () => {
     console.log(`Server is RUNNING!`)
 })
 
