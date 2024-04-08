@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const connectDB = require('./Config/db');
 
 require('dotenv').config();
-const { PORT } = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 const app = express();
 
@@ -22,14 +22,14 @@ app.get('/', (req, res) => {
     res.send("This is my API running!")
 })
 
-// http://localhost:3000/api/product
+// http://localhost:3001/api/product
 readdirSync('./Routes').map(rout => (
     // console.log(rout)
     app.use('/api', require('./Routes/' + rout))
 ));
 
-app.listen(PORT || 8000, () => {
-    console.log(`Server is RUNNING!`)
+app.listen(port, () => {
+    console.log(`Server is RUNNING! ,on port: ${port}`)
 })
 
 
